@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 import java.util.stream.Collectors;
+import javax.swing.JButton;
 import javax.swing.JOptionPane;
 
 /**
@@ -25,6 +26,10 @@ public class MainWindow extends javax.swing.JFrame {
     private Random  rnd = new Random();
     int Level =0;
     Question currentQuestion;
+
+    private void sdfsdf() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
     private class Question
     {
@@ -194,6 +199,18 @@ public class MainWindow extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void bntFiftyFiftyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bntFiftyFiftyActionPerformed
+   JButton[] btns = new JButton[]{btnAnswer1,btnAnswer2,btnAnswer3,btnAnswer4};
+   int count = 0;
+   while (count<2)
+   {
+       int n = rnd.nextInt(4);
+       String ac = btns[n].getActionCommand();
+       if (!ac.equals(currentQuestion.RightAnswer))
+       {
+           btns[n].setEnabled(false);
+           count++;
+       }
+   }
 
     }//GEN-LAST:event_bntFiftyFiftyActionPerformed
 
@@ -203,7 +220,7 @@ public class MainWindow extends javax.swing.JFrame {
             NextStep();            
         else
         {
-            JOptionPane.showMessageDialog(this, "Неверный ответ!");
+            JOptionPane.showMessageDialog(this, "Дарова!!11");
             startGame();
         }
         
@@ -250,9 +267,13 @@ public class MainWindow extends javax.swing.JFrame {
         Level = 0;
         NextStep();
     }
+       
     
     private void NextStep()
     {
+        JButton[] btns = new JButton[]{btnAnswer1,btnAnswer2,btnAnswer3,btnAnswer4};
+        for(JButton btn: btns)
+            btn.setEnabled(true);
         Level++;
         currentQuestion = GetQuestion(Level);
         ShowQuestion(currentQuestion);
@@ -273,7 +294,14 @@ public class MainWindow extends javax.swing.JFrame {
         btnAnswer3.setText(q.Answers[2]);
         btnAnswer4.setText(q.Answers[3]);
     }
-    
+    private void bntFiftyFiftyActionPerformejhg(java.awt.event.ActionEvent evt) {                                              
+if (Level == 15)
+            JOptionPane.showMessageDialog(this, "Нууу нормально");           
+        else
+        {
+            NextStep();
+        }
+    }     
     private void ReadFile()
     {
         try{
